@@ -1,3 +1,3 @@
 require './url_shortener'
 
-run UrlShortner
+run UrlShortener

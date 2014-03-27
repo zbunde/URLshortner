@@ -1,8 +1,9 @@
 require 'sinatra'
 require 'sinatra/base'
 
-class UrlShortner < Sinatra::Application
+
+class UrlShortener < Sinatra::Application
   get '/' do
-    "Hello World"
+    erb :index
   end
 end
