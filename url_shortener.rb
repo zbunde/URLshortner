@@ -9,9 +9,9 @@ class UrlShortener < Sinatra::Application
   end
 
   post '/' do
-    # URL << params[:old_url]
-    # puts URL
-    redirect :show
+    URL << params[:old_url]
+    puts URL
+    redirect '/show'
   end
 
   get '/show' do

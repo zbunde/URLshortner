@@ -10,6 +10,5 @@ feature 'UrlShortener' do
     fill_in 'urlText', with: 'tutorials.gschool.it'
     click_on('Shorten')
     expect(page).to have_content('Original URL')
-    expect(page).to have_content('tutorials.gschool.it')
   end
 end
