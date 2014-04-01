@@ -1,8 +1,14 @@
 require 'sinatra/base'
+require 'sinatra/flash'
+require 'uri'
+
+
 
 class UrlShortener < Sinatra::Application
   URL = []
   SHORTENED_URL = "http://wwww.example.com/"
+
+  enable :sessions
 
   get '/' do
     id = URL.length+ 1
@@ -15,8 +21,17 @@ class UrlShortener < Sinatra::Application
 
   post '/show' do
     id = URL.length + 1
-    URL << params[:original]
-    redirect "/show/#{id}"
+    original_url = params[:original]
+    #url = Validation.is_url?(original_url)
+    #valid_input = Validation.is_empty?(original_url)
+    if original_url =~ URI::regexp
+      URL << original_url
+      redirect "/show/#{id}"
+    else
+      flash[:error] = "This is not a valid URL"
+      redirect "/"
+    end
+
   end
 
   get '/show/:id' do

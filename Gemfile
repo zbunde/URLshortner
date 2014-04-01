@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 
 gem 'sinatra', '~> 1.4.4'
+gem 'sinatra-flash', '~> 0.3.0'
+
 
 group :test, :development do
   gem 'rspec', '~> 2.14.1'

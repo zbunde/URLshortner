@@ -44,3 +44,8 @@ td.first{
   width: 35%;
   text-align: right;
 }
+.error{
+    color: #DB0202;
+    text-align: center;
+    margin: 20px 0;
+}
