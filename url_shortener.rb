@@ -13,10 +13,6 @@ class UrlShortener < Sinatra::Application
     erb :index, :locals => {:id => id}
   end
 
-  #get '/show' do
-  #  erb :show, :locals => {:original => URL, :new_url => SHORTENED_URL}
-  #end
-
   post '/:id' do
     id = URL.length + 1
     original_url = params[:original]
@@ -28,18 +24,22 @@ class UrlShortener < Sinatra::Application
     elsif
       original_url =~ URI::regexp
       URL << original_url
-      redirect "#{id}"
+      redirect "#{id}?stats=true"
     elsif
       flash[:error] = "This is not a valid URL"
       redirect "/"
     end
-
   end
 
   get '/:id' do
+    stats = params[:stats]
     id = params[:id]
     new_url = SHORTENED_URL + id
     old_url = URL[id.to_i - 1]
-    erb :show, :locals => {:id => id, :original => old_url, :new_url => new_url}
+    if stats
+      erb :show, :locals => {:id => id, :original => old_url, :new_url => new_url}
+    else
+      redirect "#{old_url}"
+    end
   end
 end

@@ -16,6 +16,8 @@ feature 'UrlShortener' do
     expect(page).to have_content('http://wwww.example.com/2')
     click_on('short')
     page.has_xpath?('google.com')
+    visit '/2'
+    page.has_xpath?('google.com')
   end
 
   scenario "User sees error message if they submit blank input" do
@@ -31,4 +33,5 @@ feature 'UrlShortener' do
     click_on('Shorten')
     expect(page).to have_content('This is not a valid URL')
   end
+
 end
