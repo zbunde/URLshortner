@@ -7,7 +7,7 @@
       <% if flash[:error] %>
         <p class="error"><%= flash[:error] %></p>
       <% end %>
-      <form action="/show" method="post">
+      <form action="/<%= :id %>" method="post">
         <input type="text" placeholder="Enter the URL you would like to 'shorten'" name="original" id="urlText" autofocus="autofocus">
         <input type="submit" value="Shorten" id="scoobydoo">
       </form>
