@@ -24,10 +24,14 @@ class UrlShortener < Sinatra::Application
     original_url = params[:original]
     #url = Validation.is_url?(original_url)
     #valid_input = Validation.is_empty?(original_url)
-    if original_url =~ URI::regexp
+    if original_url.strip.empty?
+      flash[:error] = "URL cannot be blank"
+      redirect "/"
+    elsif
+      original_url =~ URI::regexp
       URL << original_url
       redirect "/show/#{id}"
-    else
+    elsif
       flash[:error] = "This is not a valid URL"
       redirect "/"
     end

@@ -17,4 +17,18 @@ feature 'UrlShortener' do
     click_on('short')
     page.has_xpath?('google.com')
   end
+
+  scenario "User sees error message if they submit blank input" do
+    visit '/'
+    fill_in 'urlText', with: ""
+    click_on('Shorten')
+    expect(page).to have_content('URL cannot be blank')
+  end
+
+  scenario "User enters a non valid URL" do
+    visit '/'
+    fill_in 'urlText', with: "aifjiafaiofhiafhaifh"
+    click_on('Shorten')
+    expect(page).to have_content('This is not a valid URL')
+  end
 end
